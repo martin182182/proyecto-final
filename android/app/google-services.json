@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1006414527205",
+    "firebase_url": "https://tournaments-9ad3a-default-rtdb.firebaseio.com",
+    "project_id": "tournaments-9ad3a",
+    "storage_bucket": "tournaments-9ad3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006414527205:android:a1ac48c819d6466a93320c",
+        "android_client_info": {
+          "package_name": "com.example.chesslib_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006414527205-m962u6js7714jck10t4aj6geustda5j5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chesslib_final",
+            "certificate_hash": "724209f820eca12013393bc915c8dc81ddb08df7"
+          }
+        },
+        {
+          "client_id": "1006414527205-ip02vnhv8bp3t2v7fugnem1u2sob98ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0qpKUcIZfdIMwvByzwKhUG4DTgFNfw60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006414527205-ip02vnhv8bp3t2v7fugnem1u2sob98ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
