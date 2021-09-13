@@ -41,6 +41,9 @@ class _HomeState extends State<Home> {
     UserS userService = UserS();
     User _user;
     TextEditingController _nameController = new TextEditingController();
+    TextEditingController _emailController = new TextEditingController();
+    TextEditingController _passwordController = new TextEditingController();
+    TextEditingController _confirmController = new TextEditingController();
     List<Widget> _options = [
       //Listado de partidas
       new Center(
@@ -65,25 +68,56 @@ class _HomeState extends State<Home> {
         )
       ])),
       new Form(child: Column(children: <Widget>[
+          new Text("\nRegistrate\n", style: TextStyle(fontSize: 32)),
           new TextField(
             controller: _nameController,
             decoration: new InputDecoration(fillColor: Colors.black,hintText: "Nombre",border: new OutlineInputBorder(
                   borderSide: new BorderSide(color: Colors.black)
                   ),focusColor: Colors.black),
           ),
+          new TextField(
+            controller: _emailController,
+            decoration: new InputDecoration(fillColor: Colors.black,hintText: "Email",border: new OutlineInputBorder(
+                  borderSide: new BorderSide(color: Colors.black)
+                  ),focusColor: Colors.black),
+          ),
+
+          new TextField(
+            controller: _passwordController,
+            decoration: new InputDecoration(fillColor: Colors.black,hintText: "Clave",border: new OutlineInputBorder(
+                  borderSide: new BorderSide(color: Colors.black)
+                  ),focusColor: Colors.black),
+          ),
+     
+          new TextField(
+            controller: _confirmController,
+            decoration: new InputDecoration(fillColor: Colors.black,hintText: "Confirmar",border: new OutlineInputBorder(
+                  borderSide: new BorderSide(color: Colors.black)
+                  ),focusColor: Colors.black),
+          ),
+          new Text("\n"),          
           new FloatingActionButton(
             onPressed: (){
-              _user = new User(name: _nameController.text);
-              try{
-                userService.createUser(_user);
-              } on Exception catch(_){
-              print('Error al guardar');
-              } 
+              _user = new User(name: _nameController.text, email: _emailController.text, password: _passwordController.text, confirm: _confirmController.text);
+              if(_passwordController.text!=_confirmController.text){
+                final snackbar = SnackBar(content: const Text("Usuario no registrado."));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+              }else{
+                try{
+                  userService.createUser(_user);
+                    final snackbar = SnackBar(content: const Text("Usuario registrado."));
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);  
+                } on Exception catch(_){
+                print('Error al guardar');
+                } 
+              }
             },
-            child: new Icon(Icons.add_circle,color: currentTheme.isDarkTheme() ? Colors.black:Colors.white),
-            backgroundColor: currentTheme.isDarkTheme() ? Colors.white:Colors.black
+            child: new Column(children: <Widget>[
+              Icon(Icons.add_circle,size:55,color: currentTheme.isDarkTheme() ? Colors.black:Colors.white),
+            ],
           ),
-      ])),
+          backgroundColor: currentTheme.isDarkTheme() ? Colors.white:Colors.black),
+       ])),
       new Center(
         child: new Column(
           mainAxisSize: MainAxisSize.max,
@@ -170,6 +204,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: currentTheme.isDarkTheme() ? Colors.black
         : Colors.white,
+        resizeToAvoidBottomInset: false,
         appBar: new AppBar(
             title: new Center(
                 child:
